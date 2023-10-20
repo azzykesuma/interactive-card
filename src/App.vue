@@ -98,7 +98,7 @@ const submitCardInfo = (e) => {
     errorText.name = 'Please fill in the name';
     errorList.value.push('name');
   } 
-  if (!cardNumber.value) {
+  if (!cardNumber.value || cardNumber.value.length < 16) {
     errorText.cardNumber = 'Please fill in the card number';
     errorList.value.push('cardNumber');
   }
@@ -112,7 +112,7 @@ const submitCardInfo = (e) => {
   }
   const valid = 
     name.value &&
-    cardNumber.value &&
+    (cardNumber.value && cardNumber.value.length === 16)
     cvc.value &&
     (expMonth.value && parseInt(expMonth.value) < 13) &&
     (expYear.value && parseInt(expYear.value) > parseInt(formattedYear));
