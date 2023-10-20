@@ -1,0 +1,214 @@
+// colors
+$gradient-start: hsl(249, 99%, 64%);
+$gradient-end: hsl(278, 94%, 30%);
+$red: hsl(0, 100%, 66%);
+$white: hsl(0, 0%, 100%);
+$light-grayish-violet: hsl(270, 3%, 87%);
+$dark-grayish-violet: hsl(279, 6%, 55%);
+$very-dark-violet: hsl(278, 68%, 11%);
+// fonts
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Space Grotesk', sans-serif;
+  height: 100vh;
+}
+
+#app {
+  height: 100%;
+}
+
+button {
+  cursor: pointer;
+}
+
+main {
+  display: block;
+  @media screen and (min-width: 960px) {
+    display: grid;
+    grid-template-columns: 30% 70%;
+    height: 100%;
+    align-items: center;
+  }
+}
+
+.cardSection {
+  background-image: url('./images/bg-main-mobile.png');
+  height: 200px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+
+  .backCard,.frontCard {
+    background-repeat: no-repeat;
+    height: 150px;
+    background-size: contain;
+  }
+  .frontCard {
+    background-image: url('./images/bg-card-front.png');
+    position: absolute;
+    aspect-ratio: 16/9;
+    bottom: -50px;
+    left: 20px;
+    padding: 20px;
+
+    .card_logo{
+      width: 40px;
+    }
+
+    .cardNumber,
+    .expiredInfo,
+    .name {
+      position: absolute;
+      font-size: 10px;
+      color: white;
+    }
+
+    .cardNumber {
+      top: 60%;
+      color: $white;
+      letter-spacing: 4px;
+      font-size: 14px;
+    }
+    .name {
+      bottom: 20px;
+    }
+    .expiredInfo {
+      bottom: 20px;
+      right:20px;
+    }
+  }
+  .backCard {
+    background-image: url('./images/bg-card-back.png');
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    aspect-ratio: 16/9;
+
+    .cvc {
+      font-size: 10px;
+      position: absolute;
+      top: 45%;
+      right: 30px;
+      color: white;
+    }
+  }
+
+  @media screen and (min-width:960px) {
+    height: 100%;
+    background-image: url('./images/bg-main-desktop.png');
+
+    .backCard, .frontCard {
+      scale: 1.2;
+    }
+
+    .frontCard {
+      left: 50%;
+      top: 25%;
+    }
+
+    .backCard {
+      right: -30%;
+      top: 55%;
+    }
+  }
+}
+
+.inputSection {
+  padding: 80px 20px 20px 20px;
+
+  .formItem {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+
+    label {
+      letter-spacing: 2px;
+      font-size: 13px;
+      margin-bottom: 5px;
+    }
+
+    input {
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid $light-grayish-violet;
+      width: 100%;
+
+      &::placeholder {
+        font-family: 'Space Grotesk', sans-serif;
+        color: $dark-grayish-violet;
+      }
+    }
+    .error {
+      border: 1px solid $red;
+    }
+  }
+  .formWrap {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr; 
+    gap: 10px;
+
+    .expired {
+      grid-column: span 2;
+    }
+    .cvc {
+      grid-column: span 1;
+    }
+  }
+  .submit_btn {
+    width: 100%;
+    background-color: $very-dark-violet;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 15px;
+    font-family: 'space grotesk', sans-serif;
+    margin-top: 20px;
+  }
+  .errorText {
+    color: $red;
+    font-size: 10px;
+    padding-top: 10px;
+  }
+  @media screen and (min-width:960px) {
+    padding: unset;
+    max-width: 50%;
+    margin: 0 auto;
+  }
+}
+
+.successContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+
+  img {
+    width: 60px;
+  }
+  h2 {
+    letter-spacing: 3px;
+    font-weight: normal;
+  }
+  p {
+    letter-spacing: 1px;
+    color: $dark-grayish-violet;
+  }
+}
+
+// transitions
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+}
